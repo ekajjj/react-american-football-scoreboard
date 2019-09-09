@@ -10,8 +10,8 @@ function App() {
   const [awayScore, setAwayScore] = useState(14);
   //const [quarterNum, setQuarter] = useState(1);
   const [form, setForm] = useState({
-    homeTeam: "",
-    awayTeam: "",
+    homeTeamName: "packers",
+    awayTeamName: "vikings",
     toGoYards: ""
   });
 
