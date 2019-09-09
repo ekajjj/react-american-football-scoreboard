@@ -14,6 +14,8 @@ function App() {
     awayTeam: "",
   });
 
+  //const [quarterNum, setQuarterNum] = useState(1);
+
   function handleChange(key, value) {
     setForm(prevState => {
       return { ...prevState, [key]: value };
