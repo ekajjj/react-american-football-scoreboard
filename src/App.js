@@ -8,13 +8,24 @@ function App() {
   
   const [homeScore, setHomeScore] = useState(7);
   const [awayScore, setAwayScore] = useState(14);
+  //const [quarterNum, setQuarter] = useState(1);
+  const [form, setForm] = useState({
+    homeTeam: "",
+    awayTeam: "",
+  });
+
+  function handleChange(key, value) {
+    setForm(prevState => {
+      return { ...prevState, [key]: value };
+    });
+  }
 
   return (
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
           <div className="home">
-            <h2 className="home__name">Packers</h2>
+            <h2 className="home__name">{form.homeTeamName}</h2>
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
@@ -22,7 +33,7 @@ function App() {
           </div>
           <div className="timer">00:07</div>
           <div className="away">
-            <h2 className="away__name">Vikings</h2>
+            <h2 className="away__name">{form.awayTeamName}</h2>
             <div className="away__score"> {awayScore} </div>
           </div>
         </div>
@@ -39,6 +50,22 @@ function App() {
           <button onClick = {() => setAwayScore(awayScore + 3)} className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
+      <div>
+          <input
+            id="homeTeamName"
+            type="text"
+            placeholder="Home team"
+            onChange={e => handleChange("homeTeamName", e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            id="awayTeamName"
+            type="text"
+            placeholder="Away team"
+            onChange={e => handleChange("awayTeamName", e.target.value)}
+          />
+        </div>
     </div>
   );
 }
