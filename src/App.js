@@ -12,7 +12,8 @@ function App() {
   const [form, setForm] = useState({
     homeTeamName: "packers",
     awayTeamName: "vikings",
-    toGoYards: ""
+    toGoYards: "10",
+    ballOn: "20"
   });
 
   //const [quarterNum, setQuarterNum] = useState(1);
@@ -58,7 +59,7 @@ function App() {
             <div className="away__score"> {awayScore} </div>
           </div>
         </div>
-        <BottomRow increaseDown={increaseDown} increaseQuarter={increaseQuarter} downNum={downNum} quarterNum={quarterNum} toGoYards={form.toGoYards}/>
+        <BottomRow increaseDown={increaseDown} increaseQuarter={increaseQuarter} downNum={downNum} quarterNum={quarterNum} toGoYards={form.toGoYards} ballOn={form.ballOn}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -97,6 +98,12 @@ function App() {
             type="text"
             placeholder="Yards To Go"
             onChange={e => handleChange("toGoYards", e.target.value)}
+          /></div>
+          <div>        <input
+            id="ballOn"
+            type="text"
+            placeholder="Ball On"
+            onChange={e => handleChange("ballOn", e.target.value)}
           /></div>
         </section>
     </div>
