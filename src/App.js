@@ -12,6 +12,7 @@ function App() {
   const [form, setForm] = useState({
     homeTeam: "",
     awayTeam: "",
+    toGoYards: ""
   });
 
   //const [quarterNum, setQuarterNum] = useState(1);
@@ -21,6 +22,24 @@ function App() {
       return { ...prevState, [key]: value };
     });
   }
+
+  const [quarterNum, setQuarterNum] = useState(1);
+  const [downNum, setDownNum] = useState(1);
+
+  function increaseDown(){
+    if(downNum < 4){
+      setDownNum(downNum + 1);
+    }
+    else setDownNum(1);
+  }
+  
+  function increaseQuarter(){
+    if(quarterNum < 4){
+      setQuarterNum(quarterNum + 1);
+    }
+    else setQuarterNum(1);
+  }
+  
 
   return (
     <div className="container">
@@ -39,7 +58,7 @@ function App() {
             <div className="away__score"> {awayScore} </div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow increaseDown={increaseDown} increaseQuarter={increaseQuarter} downNum={downNum} quarterNum={quarterNum} toGoYards={form.toGoYards}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -51,7 +70,11 @@ function App() {
           <button onClick = {() => setAwayScore(awayScore + 7)} className="awayButtons__touchdown">Away Touchdown</button>
           <button onClick = {() => setAwayScore(awayScore + 3)} className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
-      </section>
+      <div className="allbuttons">
+      <button onClick = {() => increaseQuarter()} className="quarterNumber">Increase Quarter</button>
+      <button onClick = {() => increaseDown()} className="downNumber">Increase Down</button>
+      </div>
+     
       <div>
           <input
             id="homeTeamName"
@@ -60,6 +83,7 @@ function App() {
             onChange={e => handleChange("homeTeamName", e.target.value)}
           />
         </div>
+       
         <div>
           <input
             id="awayTeamName"
@@ -68,6 +92,13 @@ function App() {
             onChange={e => handleChange("awayTeamName", e.target.value)}
           />
         </div>
+        <div>        <input
+            id="toGoYards"
+            type="text"
+            placeholder="Yards To Go"
+            onChange={e => handleChange("toGoYards", e.target.value)}
+          /></div>
+        </section>
     </div>
   );
 }
